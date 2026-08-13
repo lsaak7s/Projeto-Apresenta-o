@@ -1,15 +1,84 @@
-const menuOptions = [
+//Buttons
+const ForEach = document.getElementById("ForEach");
+const Map = document.getElementById("Map");
+const Reduce = document.getElementById("Reduce");
+const Filter = document.getElementById("Filter");
 
-    { name: 'X-Salada', price: 30, vegan: false, src: './img/xsalada.jpeg' },
+const lowPrice = 0.10
 
-    { name: 'X-Bacon', price: 34, vegan: false, src: './img/xbacon.png' },
+const list = document.getElementById("lista");
+let myLi = ``
 
-    { name: 'X-Bacon Egg', price: 39, vegan: false, src: './img/bacon-egg.png' },
+ForEach.addEventListener("click", Cardapio => { }
+)
+menuOptions.forEach((produt) => {
+  myLi +=
 
-    { name: 'Monstruoso', price: 50, vegan: false, src: './img/monstruoso.png' },
+    `
+  <li>
+   <img class="Escolha" src=${produt.src}>
+   <p class="myEscolha">${produt.name}</p>
+   <p class="price"> R$ ${produt.price},00</p>
+  </li>
+ `
+})
+list.innerHTML = myLi
 
-    { name: 'Big Vegano', price: 55, vegan: true, src: './img/xvegan.png' },
+Map.addEventListener("click", Desconto => {
+}
+)
 
-    { name: 'X-Vegan', price: 45, vegan: true, src: './img/monstruoso-vegan.png' },
+const Desconto10 = menuOptions.map(Descont => {return Descont.price * lowPrice  });
+console.log(Desconto10);
 
-]
+
+
+
+
+
+
+
+
+
+
+
+/* jeito  bruto
+function Produtos() {
+    list.innerHTML = `
+    <li>
+     <img id="Escolhas" class="Escolha" src="./img/xbacon.png">
+     <p id="myEscolhas" class="myEscolha">X Bacon</p>
+     <p id="sale" class="price"> R$ 34,00 </p>
+    </li>
+    <li>
+     <img id="Escolhas" class="Escolha" src="./img/monstruoso-vegan.png">
+     <p id="myEscolhas" class="myEscolha"> Mostruoso vegan</p>
+     <p id="sale" class="price"> R$ 45,00 </p>
+    </li>
+    <li>
+     <img id="Escolhas" class="Escolha" src="./img/monstruoso.png">
+     <p id="myEscolhas" class="myEscolha"> Monstruoso</p>
+     <p id="sale" class="price"> R$ 50,00 </p>
+    </li>
+    <li>
+     <img id="Escolhas" class="Escolha" src="./img/bacon-egg.png">
+     <p id="myEscolhas" class="myEscolha"> Bacon egg</p>
+     <p id="sale" class="price"> R$ 39,00 </p>
+    </li>
+    <li>
+     <img id="Escolhas" class="Escolha" src="./img/xsalada.jpeg">
+     <p id="myEscolhas" class="myEscolha"> X Salada</p>
+     <p id="sale" class="price"> R$ 30,00 </p>
+    </li>
+    <li>
+     <img id="Escolhas" class="Escolha" src="./img/xvegan.png">
+     <p id="myEscolhas" class="myEscolha"> X Vegan</p>
+     <p id="sale" class="price"> R$ 45,00 </p>  
+    </li>
+  `
+}
+
+*/
+
+
+
