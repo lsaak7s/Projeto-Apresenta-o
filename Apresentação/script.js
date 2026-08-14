@@ -7,6 +7,7 @@ const Filter = document.getElementById("Filter");
 //Visão
 ForEach.addEventListener("click", ()/*Para Fazer com que addEventListener Nao chame a função assim que carregar e preciso usar uma função Void, para que assim ele espere o button ser apertado */ => Cardapio(menuOptions))
 Map.addEventListener("click", mapAll)
+Reduce.addEventListener("click", Total)
 
 //Valores
 const list = document.getElementById("lista");
@@ -14,6 +15,7 @@ const lowPrice = 0.90
 
 //Mapear e dar o desconto
 function mapAll() {
+  '. '
   //Aqui ele mapeou os numeros e aplicou os valores
   const pric = menuOptions.map(All => ({
     //Spred operantor, com isso conseguimos ir direto ao ponto sobre oque podemos alterar 
@@ -43,3 +45,13 @@ function Cardapio(pric) {
   });
   list.innerHTML = myLi
 }
+//Calcular Tudo
+function Total() {
+  const value = menuOptions.reduce((acc, price) => {
+    return acc + price.price;
+  }, 0); 
+  console.log(`Valor sem desconto R$:${value}`)
+}
+
+
+
