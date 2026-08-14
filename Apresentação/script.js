@@ -3,14 +3,14 @@ const ForEach = document.getElementById("ForEach");
 const Map = document.getElementById("Map");
 const Reduce = document.getElementById("Reduce");
 const Filter = document.getElementById("Filter");
-
-const lowPrice = 0.10
-
+//Valores
 const list = document.getElementById("lista");
+const lowPrice = 0.90
 let myLi = ``
-
+//Mostrar Tudo
 ForEach.addEventListener("click", Cardapio => { }
 )
+
 menuOptions.forEach((produt) => {
   myLi +=
 
@@ -23,13 +23,19 @@ menuOptions.forEach((produt) => {
  `
 })
 list.innerHTML = myLi
+//Mapear e dar o desconto
+Map.addEventListener("click", mapAll)
 
-Map.addEventListener("click", Desconto => {
+const price = menuOptions.map(price => { return price.price })
+
+const number = price.map(price => { return price * lowPrice })
+
+function mapAll() {
+  const newArray = menuOptions.map((produtos) => ({
+    ...produtos,
+    price: produtos.price * lowPrice
+  }))
 }
-)
-
-const Desconto10 = menuOptions.map(Descont => {return Descont.price * lowPrice  });
-console.log(Desconto10);
 
 
 
@@ -41,6 +47,11 @@ console.log(Desconto10);
 
 
 
+
+
+
+
+//console.log(Desconto10);
 
 /* jeito  bruto
 function Produtos() {
