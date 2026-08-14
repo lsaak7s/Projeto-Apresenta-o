@@ -3,93 +3,43 @@ const ForEach = document.getElementById("ForEach");
 const Map = document.getElementById("Map");
 const Reduce = document.getElementById("Reduce");
 const Filter = document.getElementById("Filter");
+
+//Visão
+ForEach.addEventListener("click", ()/*Para Fazer com que addEventListener Nao chame a função assim que carregar e preciso usar uma função Void, para que assim ele espere o button ser apertado */ => Cardapio(menuOptions))
+Map.addEventListener("click", mapAll)
+
 //Valores
 const list = document.getElementById("lista");
 const lowPrice = 0.90
-let myLi = ``
+
+//Mapear e dar o desconto
+function mapAll() {
+  //Aqui ele mapeou os numeros e aplicou os valores
+  const pric = menuOptions.map(All => ({
+    //Spred operantor, com isso conseguimos ir direto ao ponto sobre oque podemos alterar 
+    ...All,
+    //Aqui dizemos desde o inicio oque queremos
+    price: All.price * lowPrice,
+
+  }));
+  Cardapio(pric)
+
+}
+
 //Mostrar Tudo
-ForEach.addEventListener("click", Cardapio => { }
-)
-
-menuOptions.forEach((produt) => {
-  myLi +=
-
-    `
+function Cardapio(pric) {
+  //Aqui quardamos o cardapio
+  let myLi = ``
+  pric.forEach((produt) => {
+    /*Aqui o forEach vai pecorrer o Array adicionalas, so que precisamos dizer para myLi se sim ou não então por isso do + ele vai montando e adicionando*/
+    myLi +=
+      `
   <li>
    <img class="Escolha" src=${produt.src}>
    <p class="myEscolha">${produt.name}</p>
-   <p class="price"> R$ ${produt.price},00</p>
+   <p class="price"> R$ ${produt.price}</p>
   </li>
  `
-})
-list.innerHTML = myLi
-//Mapear e dar o desconto
-Map.addEventListener("click", mapAll)
-
-const price = menuOptions.map(price => { return price.price })
-
-const number = price.map(price => { return price * lowPrice })
-
-function mapAll() {
-  const newArray = menuOptions.map((produtos) => ({
-    ...produtos,
-    price: produtos.price * lowPrice
-  }))
+  });
+  list.innerHTML = myLi
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//console.log(Desconto10);
-
-/* jeito  bruto
-function Produtos() {
-    list.innerHTML = `
-    <li>
-     <img id="Escolhas" class="Escolha" src="./img/xbacon.png">
-     <p id="myEscolhas" class="myEscolha">X Bacon</p>
-     <p id="sale" class="price"> R$ 34,00 </p>
-    </li>
-    <li>
-     <img id="Escolhas" class="Escolha" src="./img/monstruoso-vegan.png">
-     <p id="myEscolhas" class="myEscolha"> Mostruoso vegan</p>
-     <p id="sale" class="price"> R$ 45,00 </p>
-    </li>
-    <li>
-     <img id="Escolhas" class="Escolha" src="./img/monstruoso.png">
-     <p id="myEscolhas" class="myEscolha"> Monstruoso</p>
-     <p id="sale" class="price"> R$ 50,00 </p>
-    </li>
-    <li>
-     <img id="Escolhas" class="Escolha" src="./img/bacon-egg.png">
-     <p id="myEscolhas" class="myEscolha"> Bacon egg</p>
-     <p id="sale" class="price"> R$ 39,00 </p>
-    </li>
-    <li>
-     <img id="Escolhas" class="Escolha" src="./img/xsalada.jpeg">
-     <p id="myEscolhas" class="myEscolha"> X Salada</p>
-     <p id="sale" class="price"> R$ 30,00 </p>
-    </li>
-    <li>
-     <img id="Escolhas" class="Escolha" src="./img/xvegan.png">
-     <p id="myEscolhas" class="myEscolha"> X Vegan</p>
-     <p id="sale" class="price"> R$ 45,00 </p>  
-    </li>
-  `
-}
-
-*/
-
-
-
