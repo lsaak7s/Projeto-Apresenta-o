@@ -8,7 +8,7 @@ const Filter = document.getElementById("Filter");
 ForEach.addEventListener("click", ()/*Para Fazer com que addEventListener Nao chame a função assim que carregar e preciso usar uma função Void, para que assim ele espere o button ser apertado */ => Cardapio(menuOptions))
 Map.addEventListener("click", mapAll)
 Reduce.addEventListener("click", Total)
-
+Filter.addEventListener("click", Total)
 //Valores
 const list = document.getElementById("lista");
 const Desconto = document.getElementById("Desconto");
@@ -57,6 +57,13 @@ function Total() {
   Desconto.innerHTML = ` Valor sem desconto R$:${value} 
  Valor com desconto R$:${valueLow}`
 
+}
+//Filtra Veganos
+function Filtrar() {
+  const Filter = menuOptions.filter(
+
+  );
+console.log(Filter)
 }
 
 
