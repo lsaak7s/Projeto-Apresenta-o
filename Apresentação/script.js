@@ -11,11 +11,11 @@ Reduce.addEventListener("click", Total)
 
 //Valores
 const list = document.getElementById("lista");
+const Desconto = document.getElementById("Desconto");
 const lowPrice = 0.90
 
 //Mapear e dar o desconto
 function mapAll() {
-  '. '
   //Aqui ele mapeou os numeros e aplicou os valores
   const pric = menuOptions.map(All => ({
     //Spred operantor, com isso conseguimos ir direto ao ponto sobre oque podemos alterar 
@@ -27,7 +27,6 @@ function mapAll() {
   Cardapio(pric)
 
 }
-
 //Mostrar Tudo
 function Cardapio(pric) {
   //Aqui quardamos o cardapio
@@ -36,8 +35,8 @@ function Cardapio(pric) {
     /*Aqui o forEach vai pecorrer o Array adicionalas, so que precisamos dizer para myLi se sim ou não então por isso do + ele vai montando e adicionando*/
     myLi +=
       `
-  <li>
-   <img class="Escolha" src=${produt.src}>
+  <li class="iteis">
+   <img class="Imagem" src=${produt.src}>
    <p class="myEscolha">${produt.name}</p>
    <p class="price"> R$ ${produt.price}</p>
   </li>
@@ -47,10 +46,17 @@ function Cardapio(pric) {
 }
 //Calcular Tudo
 function Total() {
+  //Com desconto
   const value = menuOptions.reduce((acc, price) => {
     return acc + price.price;
-  }, 0); 
-  console.log(`Valor sem desconto R$:${value}`)
+  }, 0);
+  //Sem desconto
+  const valueLow = menuOptions.reduce((acc, price) => {
+    return acc + price.price * lowPrice;
+  }, 0);
+  Desconto.innerHTML = ` Valor sem desconto R$:${value} 
+ Valor com desconto R$:${valueLow}`
+
 }
 
 
