@@ -5,10 +5,11 @@ const Reduce = document.getElementById("Reduce");
 const Filter = document.getElementById("Filter");
 
 //Visão
-ForEach.addEventListener("click", ()/*Para Fazer com que addEventListener Nao chame a função assim que carregar e preciso usar uma função Void, para que assim ele espere o button ser apertado */ => Cardapio(menuOptions))
+/*Para Fazer com que addEventListener Nao chame a função assim que carregar e preciso usar uma função Void, para que assim ele espere o button ser apertado */
+ForEach.addEventListener("click", () => Cardapio(menuOptions))
 Map.addEventListener("click", mapAll)
 Reduce.addEventListener("click", Total)
-Filter.addEventListener("click", Total)
+Filter.addEventListener("click", Filtrar)
 //Valores
 const list = document.getElementById("lista");
 const Desconto = document.getElementById("Desconto");
@@ -60,10 +61,23 @@ function Total() {
 }
 //Filtra Veganos
 function Filtrar() {
-  const Filter = menuOptions.filter(
-
-  );
-console.log(Filter)
+ 
+  const filter = menuOptions.filter(filter => filter.vegan === true );
+  
+  let myLi = ``
+  filter.forEach((produt) => {
+    /*Aqui o forEach vai pecorrer o Array adicionalas, so que precisamos dizer para myLi se sim ou não então por isso do + ele vai montando e adicionando*/
+    myLi +=
+      `
+  <li class="iteis">
+   <img class="Imagem" src=${produt.src}>
+   <p class="myEscolha">${produt.name}</p>
+   <p class="price"> R$ ${produt.price}</p>
+  </li>
+ `
+  });
+  list.innerHTML = myLi
+  console.log(filter)
 }
 
 
