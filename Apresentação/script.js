@@ -13,7 +13,7 @@ Filter.addEventListener("click", Filtrar)
 //Valores
 const list = document.getElementById("lista");
 const Desconto = document.getElementById("Desconto");
-const lowPrice = 0.90
+const lowPrice = 0.80
 
 //Mapear e dar o desconto
 function mapAll() {
@@ -39,7 +39,7 @@ function Cardapio(pric)/*Aqui ela usar o parametro porque o Array não vem mais 
   <li class="iteis">
    <img class="Imagem" src=${produt.src}>
    <p class="myEscolha">${produt.name}</p>
-   <p class="price"> R$ ${produt.price}</p>
+   <p class="price"> R$ ${produt.price.toFixed(2)}</p>
   </li>
  `
   });
@@ -55,8 +55,8 @@ function Total() {
   const valueLow = menuOptions.reduce((acc, price) => {
     return acc + price.price * lowPrice;
   }, 0);
-  Desconto.innerHTML = ` Valor sem desconto R$:${value} <br> 
- Valor com desconto via Pix R$:${valueLow}`
+  Desconto.innerHTML = ` Valor sem desconto R$:${value.toFixed(2)} <br> 
+ Valor com desconto via Pix R$:${valueLow.toFixed(2)}`
 
 }
 //Filtra Veganos
@@ -73,7 +73,7 @@ function Filtrar() {
    <li class="iteis">
     <img class="Imagem" src=${produt.src}>
     <p class="myEscolha">${produt.name}</p>
-    <p class="price">Pix R$ ${produt.price * lowPrice}  </p>
+    <p class="price">Pix R$ ${produt.price.toFixed(2) * lowPrice}  </p>
    </li>
  `
   });
