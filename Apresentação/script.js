@@ -5,14 +5,15 @@ const Reduce = document.getElementById("Reduce");
 const Filter = document.getElementById("Filter");
 
 //Visão
-ForEach.addEventListener("click", ()/*Para Fazer com que addEventListener Nao chame a função assim que carregar e preciso usar uma função Void, para que assim ele espere o button ser apertado */ => Cardapio(menuOptions))
+ForEach.addEventListener("click", () => Cardapio(menuOptions)) /*Para Fazer com que addEventListener Nao chame a função assim que carregar e preciso usar uma função Void, para que assim ele espere o button ser apertado */
 Map.addEventListener("click", mapAll)
 Reduce.addEventListener("click", Total)
-Filter.addEventListener("click", Total)
+Filter.addEventListener("click", Filtrar)
+
 //Valores
 const list = document.getElementById("lista");
 const Desconto = document.getElementById("Desconto");
-const lowPrice = 0.90
+const lowPrice = 0.80
 
 //Mapear e dar o desconto
 function mapAll() {
@@ -28,7 +29,7 @@ function mapAll() {
 
 }
 //Mostrar Tudo
-function Cardapio(pric) {
+function Cardapio(pric)/*Aqui ela usar o parametro porque o Array não vem mais dela*/ {
   //Aqui quardamos o cardapio
   let myLi = ``
   pric.forEach((produt) => {
@@ -38,7 +39,7 @@ function Cardapio(pric) {
   <li class="iteis">
    <img class="Imagem" src=${produt.src}>
    <p class="myEscolha">${produt.name}</p>
-   <p class="price"> R$ ${produt.price}</p>
+   <p class="price"> R$ ${produt.price.toFixed(2)}</p>
   </li>
  `
   });
@@ -54,17 +55,28 @@ function Total() {
   const valueLow = menuOptions.reduce((acc, price) => {
     return acc + price.price * lowPrice;
   }, 0);
-  Desconto.innerHTML = ` Valor sem desconto R$:${value} 
- Valor com desconto R$:${valueLow}`
+  Desconto.innerHTML = ` Valor sem desconto R$:${value.toFixed(2)} <br> 
+ Valor com desconto via Pix R$:${valueLow.toFixed(2)}`
 
 }
 //Filtra Veganos
 function Filtrar() {
-  const Filter = menuOptions.filter(
-
-  );
-console.log(Filter)
-}
-
-
-
+  //Aqui eu apenas peguei os valores de vegan que eram true
+  const filter = menuOptions.filter(filter => filter.vegan === true);
+  //Aqui ele guarda oque já colocamos na tela
+  let myLi = ``
+  //O nosso motor que vai pecorrer o nosso array
+  filter.forEach((produt) => {
+    /*Aqui o forEach vai pecorrer o Array adicionalas, so que precisamos dizer para myLi se sim ou não então por isso do + ele vai montando e adicionando*/
+    myLi +=
+      `
+   <li class="iteis">
+    <img class="Imagem" src=${produt.src}>
+    <p class="myEscolha">${produt.name}</p>
+    <p class="price">Pix R$ ${produt.price.toFixed(2) * lowPrice}  </p>
+   </li>
+ `
+  });
+  //Aqui a informação da minha myLi vai para o html
+  list.innerHTML = myLi
+};
