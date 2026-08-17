@@ -5,7 +5,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Playwrite VN", sans-serif;
-
 }
 
 .Fundo {
@@ -25,7 +24,7 @@
   border: none;
   border-radius: 10px;
   font-weight: 700;
-  width: 110px;
+  width: 150px;
   height: 80px;
   opacity: 0.7;
 }
@@ -38,11 +37,12 @@
   display: grid;
   justify-content: center;
   align-items: center;
+  font-size: 24px;
 }
 
 .Imagem {
   margin-top:20px;
-  border: 3px, solid;
+  border: 5px, solid;
   border-color: rgb(0, 0, 0);
   border-radius: 20px;
   width: 100%;
@@ -52,22 +52,24 @@
   display: grid;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
-  font-weight: 900;
+  font-size: 28px;
+  font-weight: 800;
 }
 
 .price {
   display: grid;
   justify-content: center;
   align-items: center;
+  font-weight: 600;
+  font-size: 24px;
 }
 
 .Lista {
   list-style: none;
   display: grid;
   justify-content: center;
-  grid-template-columns: 200px 200px 200px;
-  gap: 60px
+  grid-template-columns: 250px 250px 250px;
+  gap: 20px
 }
 
 .iteis {

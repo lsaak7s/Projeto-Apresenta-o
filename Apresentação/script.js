@@ -5,11 +5,11 @@ const Reduce = document.getElementById("Reduce");
 const Filter = document.getElementById("Filter");
 
 //Visão
-/*Para Fazer com que addEventListener Nao chame a função assim que carregar e preciso usar uma função Void, para que assim ele espere o button ser apertado */
-ForEach.addEventListener("click", () => Cardapio(menuOptions))
+ForEach.addEventListener("click", () => Cardapio(menuOptions)) /*Para Fazer com que addEventListener Nao chame a função assim que carregar e preciso usar uma função Void, para que assim ele espere o button ser apertado */
 Map.addEventListener("click", mapAll)
 Reduce.addEventListener("click", Total)
 Filter.addEventListener("click", Filtrar)
+
 //Valores
 const list = document.getElementById("lista");
 const Desconto = document.getElementById("Desconto");
@@ -29,7 +29,7 @@ function mapAll() {
 
 }
 //Mostrar Tudo
-function Cardapio(pric) {
+function Cardapio(pric)/*Aqui ela usar o parametro porque o Array não vem mais dela*/ {
   //Aqui quardamos o cardapio
   let myLi = ``
   pric.forEach((produt) => {
@@ -55,30 +55,28 @@ function Total() {
   const valueLow = menuOptions.reduce((acc, price) => {
     return acc + price.price * lowPrice;
   }, 0);
-  Desconto.innerHTML = ` Valor sem desconto R$:${value} 
- Valor com desconto R$:${valueLow}`
+  Desconto.innerHTML = ` Valor sem desconto R$:${value} <br> 
+ Valor com desconto via Pix R$:${valueLow}`
 
 }
 //Filtra Veganos
 function Filtrar() {
- 
-  const filter = menuOptions.filter(filter => filter.vegan === true );
-  
+  //Aqui eu apenas peguei os valores de vegan que eram true
+  const filter = menuOptions.filter(filter => filter.vegan === true);
+  //Aqui ele guarda oque já colocamos na tela
   let myLi = ``
+  //O nosso motor que vai pecorrer o nosso array
   filter.forEach((produt) => {
     /*Aqui o forEach vai pecorrer o Array adicionalas, so que precisamos dizer para myLi se sim ou não então por isso do + ele vai montando e adicionando*/
     myLi +=
       `
-  <li class="iteis">
-   <img class="Imagem" src=${produt.src}>
-   <p class="myEscolha">${produt.name}</p>
-   <p class="price"> R$ ${produt.price}</p>
-  </li>
+   <li class="iteis">
+    <img class="Imagem" src=${produt.src}>
+    <p class="myEscolha">${produt.name}</p>
+    <p class="price">Pix R$ ${produt.price * lowPrice}  </p>
+   </li>
  `
   });
+  //Aqui a informação da minha myLi vai para o html
   list.innerHTML = myLi
-  console.log(filter)
-}
-
-
-
+};
